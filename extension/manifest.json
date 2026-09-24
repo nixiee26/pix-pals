@@ -1,0 +1,29 @@
+{
+  "manifest_version": 3,
+  "name": "PIX PALS Blocker",
+  "version": "1.0.0",
+  "description": "Hard distraction blocker for PIX PALS. Enforces domain blocking during active study sessions.",
+  "permissions": [
+    "declarativeNetRequest",
+    "declarativeNetRequestWithHostAccess",
+    "storage",
+    "tabs",
+    "webNavigation"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["http://localhost:*/*", "http://127.0.0.1:*/*", "https://*.web.app/*"],
+      "js": ["content.js"],
+      "run_at": "document_start"
+    }
+  ],
+  "action": {
+    "default_title": "PIX PALS Active"
+  }
+}

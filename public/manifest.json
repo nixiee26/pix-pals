@@ -1,0 +1,15 @@
+{
+  "short_name": "PIX PALS",
+  "name": "PIX PALS — Small focus. Big dreams. ⭐",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "type": "image/svg+xml",
+      "sizes": "any"
+    }
+  ],
+  "start_url": "/",
+  "background_color": "#fcfaf6",
+  "theme_color": "#2c221e",
+  "display": "standalone"
+}
