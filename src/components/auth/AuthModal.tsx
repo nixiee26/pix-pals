@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Lock, ShieldCheck, Mail, ArrowRight, Check } from 'lucide-react';
 import { PixelMascot } from '../mascot/PixelMascot';
 import { UserProfile } from '../../types';
+import { authService } from '../../services/firebaseAuth';
 
 interface AuthModalProps {
   isOpen: boolean;
@@ -12,23 +13,29 @@ interface AuthModalProps {
 export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, onLoginSuccess }) => {
   const [email, setEmail] = useState('');
   const [name, setName] = useState('');
+  const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
   if (!isOpen) return null;
 
-  const handleGoogleSignIn = () => {
-    setIsLoading(true);
-    // Simulate real Google Auth popup handshake
-    setTimeout(() => {
-      setIsLoading(false);
-      onLoginSuccess({
-        name: 'Sekhar',
-        email: 'sekhar.google@gmail.com',
-        avatarUrl: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop',
-      });
-      onClose();
-    }, 900);
-  };
+const handleGoogleSignIn = async () => {
+  setIsLoading(true);
+
+  const result = await authService.signInWithGoogle();
+
+  setIsLoading(false);
+
+  if (result.user) {
+    onLoginSuccess({
+      name: result.user.displayName,
+      email: result.user.email,
+      avatarUrl: result.user.photoURL,
+    });
+    onClose();
+  } else {
+    alert(result.error || 'Google sign-in failed.');
+  }
+};
 
   const handleEmailSignIn = (e: React.FormEvent) => {
     e.preventDefault();
@@ -119,7 +126,20 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, onLoginSu
               className="w-full px-3 py-2 border-2 border-[#2c221e] rounded-lg text-xs font-semibold"
             />
           </div>
-
+                  <div>
+            <label className="block text-[11px] font-bold text-[#5c4a3f] mb-1">
+              Password
+            </label>
+            <input
+              type="password"
+              required
+              minLength={6}
+              placeholder="At least 6 characters"
+              value={password}
+              onChange={e => setPassword(e.target.value)}
+              className="w-full px-3 py-2 border-2 border-[#2c221e] rounded-lg text-xs font-semibold"
+            />
+          </div>
           <button
             type="submit"
             disabled={isLoading}

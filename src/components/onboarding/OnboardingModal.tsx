@@ -11,7 +11,7 @@ export const OnboardingModal: React.FC<OnboardingModalProps> = ({ onComplete }) 
 
   const steps = [
     {
-      title: 'Welcome to Focus Buddy',
+      title: 'Welcome to PIX PALS!',
       subtitle: 'A cozy pixel-art companion that quietly helps you become disciplined.',
       icon: <PixelMascot id="calico_cat" state="celebrating" size={64} />,
       content: 'No corporate SaaS clutter, no noisy feeds. Just a warm study desk, peaceful ambient sounds, and an adorable companion cheering you on.',
@@ -20,7 +20,7 @@ export const OnboardingModal: React.FC<OnboardingModalProps> = ({ onComplete }) 
       title: 'Conquer Hesitation',
       subtitle: 'Anti-procrastination tracking built right in.',
       icon: <Clock className="w-12 h-12 text-[#df793b]" />,
-      content: 'Focus Buddy measures the gap between when you planned to start and when you actually sit down. If you delay, gentle non-judgmental nudges help break the friction.',
+      content: 'PIX PALS measures the gap between when you planned to start and when you actually sit down. If you delay, gentle non-judgmental nudges help break the friction.',
     },
     {
       title: 'Hard Distraction Blocking',

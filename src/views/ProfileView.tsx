@@ -11,17 +11,19 @@ interface ProfileViewProps {
   onUpdateProfile: (profile: UserProfile) => void;
   onUpdateSettings: (settings: UserSettings) => void;
   onUpdateBlockingProfiles: (profiles: BlockingProfile[]) => void;
-  onResetAllData: () => void;
-}
+onResetAllData: () => void;
+onOpenAuth: () => void;}
 
 export const ProfileView: React.FC<ProfileViewProps> = ({
   profile,
   settings,
+
   blockingProfiles,
   onUpdateProfile,
   onUpdateSettings,
   onUpdateBlockingProfiles,
   onResetAllData,
+  onOpenAuth,
 }) => {
   const [activeTab, setActiveTab] = useState<'profile' | 'blocker' | 'settings'>('profile');
   const [isEditingName, setIsEditingName] = useState(false);
@@ -161,6 +163,12 @@ export const ProfileView: React.FC<ProfileViewProps> = ({
             </p>
           </div>
         </div>
+        <button
+          onClick={onOpenAuth}
+           className="px-3 py-2 bg-[#faeedf] border-2 border-[#2c221e] rounded-lg text-xs font-bold hover:bg-[#f5dfc8] transition-all"
+       >
+         🔐 Account / Sign In
+       </button>
 
         {/* Navigation Tabs */}
         <div className="flex items-center gap-1 bg-[#fcfaf6] border border-[#2c221e] rounded-lg p-1 self-start sm:self-auto">

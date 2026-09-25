@@ -298,6 +298,7 @@ export const App: React.FC = () => {
             onUpdateSettings={handleUpdateSettings}
             onUpdateBlockingProfiles={handleSaveBlockingProfiles}
             onResetAllData={handleResetAllData}
+            onOpenAuth={() => setIsAuthOpen(true)}
           />
         )}
       </main>
